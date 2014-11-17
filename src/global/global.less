@@ -1,3 +1,5 @@
+@color-highlight: #EA5518;
+
 //offset breedte
 @offset-base: 10px;
 
@@ -105,7 +107,7 @@ a {
     color: #06e;
 }
 a:hover {
-    color: #ea5518 !important;
+    color: @color-highlight !important;
 }
 a:visited {
     color: #1a1e86;
@@ -337,8 +339,17 @@ u {
     margin-left: 10px;
     font-size: 14px;
 }
-.maincontent .menucontent nav>ul>li.hybridsaas-menu-has-children>a {
-    border-bottom: solid 2px #63248f;
+
+.maincontent .menucontent nav > ul > li {
+    cursor: pointer;
+
+    &:hover {
+        color: @color-highlight;
+    }
+
+    .hybridsaas-menu-has-children>a {
+        border-bottom: solid 2px #63248f;
+    }
 }
 .maincontent .menucontent nav>ul>li>a {
     font-weight: bold;

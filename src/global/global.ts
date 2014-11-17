@@ -3,5 +3,5 @@
 $(() => {
 
     //onload
-
+    var $nav = $('.main-column-left nav > ul > li');
 });

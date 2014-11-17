@@ -312,7 +312,13 @@ u {
   margin-left: 10px;
   font-size: 14px;
 }
-.maincontent .menucontent nav > ul > li.hybridsaas-menu-has-children > a {
+.maincontent .menucontent nav > ul > li {
+  cursor: pointer;
+}
+.maincontent .menucontent nav > ul > li:hover {
+  color: #ea5518;
+}
+.maincontent .menucontent nav > ul > li .hybridsaas-menu-has-children > a {
   border-bottom: solid 2px #63248f;
 }
 .maincontent .menucontent nav > ul > li > a {
