@@ -1,0 +1,84 @@
+//offset breedte
+@offset-base: 10px;
+
+//pagina breedte:
+@width-page: 1060px;
+@offset-default: 200px;
+
+//global
+.site {
+    .column {
+        width: @offset-default + @offset-base;
+        display: table-cell;
+        vertical-align: top;
+
+        &.x4 {
+            width: (@offset-default + @offset-base) * 4;
+        }
+        &.x3 {
+            width: (@offset-default + @offset-base) * 3;
+        }
+        &.x2 {
+            width: (@offset-default + @offset-base) * 2;
+        }
+    }
+
+    .row {
+        margin-top: @offset-base;
+    }
+
+    .wrapper {
+        width: @width-page;
+        margin: auto;
+        vertical-align: top;
+        
+    }
+}
+
+.content {
+    text-align: center;
+    .header-image {
+        margin-left: -260px;
+    }
+}
+
+
+.cart-wrap {
+    text-align: right;
+    position: absolute;
+    margin-top: 55px;
+    margin-left: 60px;
+    width: 180px;
+    display: inline-block;
+    
+
+    .image {
+        vertical-align: top;
+        display: inline-block;
+    }
+    .text {
+        vertical-align: top;
+        display: inline-block;
+        text-align: left;
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+}
+
+
+
+
+.big-image {
+    border: solid 1px gray;
+    background-color: white;
+    border-radius: 0.75em;
+    width: 500px;
+    height: 500px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+    position: absolute;
+    z-index: 40;
+    margin-left: -150px;
+    margin-Top: -70px;
+    display: none;
+}
