@@ -338,6 +338,12 @@ u {
 .maincontent .menucontent nav>ul {
     margin-left: 10px;
     font-size: 14px;
+    &>li>span {
+        text-decoration: underline;
+        ul {
+            text-decoration: none;
+        }
+    }
 }
 
 .maincontent .menucontent nav > ul > li {
@@ -350,17 +356,29 @@ u {
     .hybridsaas-menu-has-children>a {
         border-bottom: solid 2px #63248f;
     }
+
+    ul {
+        margin-bottom: 20px;
+        display: none;
+        font-weight: normal;
+    }
+
+    &.show-menu {
+        font-weight: bold;
+        color: @color-highlight;
+        ul {
+            display: block !important;     
+        }
+    }
 }
+
 .maincontent .menucontent nav>ul>li>a {
     font-weight: bold;
     font-size: 16px;
     display: block;
     padding-bottom: 1px;
 }
-.maincontent .menucontent nav>ul>li ul {
-    margin-bottom: 20px;
-    display: none;
-}
+
 .maincontent .menucontent nav>ul>li ul li {
     margin-top: 4px;
     text-decoration: none;

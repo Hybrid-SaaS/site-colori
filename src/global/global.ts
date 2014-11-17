@@ -3,5 +3,5 @@
 $(() => {
 
     //onload
-    var $nav = $('.main-column-left nav > ul > li');
+    $('.main-column-left nav > ul > li').click((event) => $(event.delegateTarget).toggleClass('show-menu'));
 });

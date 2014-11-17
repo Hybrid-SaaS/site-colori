@@ -312,6 +312,12 @@ u {
   margin-left: 10px;
   font-size: 14px;
 }
+.maincontent .menucontent nav > ul > li > span {
+  text-decoration: underline;
+}
+.maincontent .menucontent nav > ul > li > span ul {
+  text-decoration: none;
+}
 .maincontent .menucontent nav > ul > li {
   cursor: pointer;
 }
@@ -321,15 +327,23 @@ u {
 .maincontent .menucontent nav > ul > li .hybridsaas-menu-has-children > a {
   border-bottom: solid 2px #63248f;
 }
+.maincontent .menucontent nav > ul > li ul {
+  margin-bottom: 20px;
+  display: none;
+  font-weight: normal;
+}
+.maincontent .menucontent nav > ul > li.show-menu {
+  font-weight: bold;
+  color: #ea5518;
+}
+.maincontent .menucontent nav > ul > li.show-menu ul {
+  display: block !important;
+}
 .maincontent .menucontent nav > ul > li > a {
   font-weight: bold;
   font-size: 16px;
   display: block;
   padding-bottom: 1px;
-}
-.maincontent .menucontent nav > ul > li ul {
-  margin-bottom: 20px;
-  display: none;
 }
 .maincontent .menucontent nav > ul > li ul li {
   margin-top: 4px;
