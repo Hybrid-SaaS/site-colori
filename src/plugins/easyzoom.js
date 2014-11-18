@@ -110,8 +110,8 @@
         w1 = this.$target.width();
         h1 = this.$target.height();
 
-        w2 = this.$flyout.width();
-        h2 = this.$flyout.height();
+        w2 = this.$target.width();
+        h2 = this.$target.height();
 
         dw = this.$zoom.width() - w2;
         dh = this.$zoom.height() - h2;
@@ -204,7 +204,7 @@
         }
         else {
             this.$zoom.css({
-                top:  '' + (xt * -1) + 'px',
+                top:  '' + (xt * -1 -this.$target.height()) + 'px',
                 left: '' + (xl * -1) + 'px'
             });
         }

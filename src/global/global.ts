@@ -30,11 +30,11 @@ $(() => {
 
     var $imageFrame = $('.product-left .product-image .imageFrame');
     var $zoomImage = $($imageFrame).children('img');
-    var link = $zoomImage.attr('src');
+    var link = $zoomImage.data('guid');
     $imageFrame.addClass('easyzoom');
     $zoomImage.detach();
-    $imageFrame.append('<a href="' + link + '"></div>');
+    $imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
     $imageFrame.children('a').append($zoomImage);
 
-    $('.easyzoom').easyZoom();
+    $easyzoom = $('.easyzoom').easyZoom();
 });
