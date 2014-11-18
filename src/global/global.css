@@ -125,6 +125,12 @@ u {
   padding-left: 20px !important;
   width: 1040px !important;
 }
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .header {
+  display: none;
+}
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .body {
+  border-style: solid solid;
+}
 .maincontent #columns {
   display: table;
 }
@@ -194,7 +200,7 @@ u {
 .maincontent #columns .main-column-right .container .product {
   background: none !important;
   background: #fff;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: none!important;
   border: 1px solid #d5d5ce;
 }
 .maincontent #columns .main-column-right .container .product:hover {
