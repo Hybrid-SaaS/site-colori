@@ -361,6 +361,25 @@ u {
   margin-top: 4px;
   text-decoration: none;
 }
+.related-container .related .imageFrame .images {
+  padding: 0;
+}
+.related-container .related.open .imageFrame .images {
+  padding: 5px 0;
+}
+.related-container .related .imageFrame .size {
+  display: none;
+}
+.related-container .related.open .imageFrame .size {
+  display: block !important;
+  padding: 2px 0;
+  font-weight: bold;
+}
+.related-container .related.open .imageFrame .size:hover {
+  color: #ea5518;
+  background: #f1f1ff;
+  cursor: pointer;
+}
 #footerFrame {
   width: 1060px;
   margin: 20px auto 0 auto;
