@@ -158,8 +158,13 @@ u {
     display: none;
 }
 
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .footer {
+    display: none;
+}
+
 .maincontent.nomenu .main-column-right .product.detail .product-right .product-options .body {
-    border-style: solid solid;
+    border-top: 1px solid #D2CFCD;
+    box-shadow: none;
 }
 
 .maincontent #columns {
@@ -223,9 +228,10 @@ u {
 .maincontent #columns .main-column-right .container .product {
     background: none !important;
     background: #fff;
-    //box-shadow: 2px 2px 4px rgba(0, 0, 0, .15);
+    //*box-shadow: 2px 2px 4px rgba(0, 0, 0, .15);
     box-shadow: none!important;
     border: 1px solid #d5d5ce;
+    min-height: 300px!important;
 }
 .maincontent #columns .main-column-right .container .product:hover {
     border: 1px solid #707070;
@@ -280,7 +286,7 @@ u {
 }
 .maincontent #columns .main-column-right .container .product a .title {
     color: #5d5d5d;
-    height: 50px;
+    height: 40px;
 }
 .maincontent #columns .main-column-right .container a {
     display: inline-block;
@@ -288,8 +294,10 @@ u {
     margin-right: 15px;
 }
 .maincontent #columns .main-column-right .container a .path {
-    width: 405px;
+    width: 403px;
     height: 188px;
+    box-shadow: none;
+    border: 1px solid #D5D5CE;
 }
 .maincontent #columns .main-column-right .usercontent.below {
     margin-bottom: 50px;
@@ -354,6 +362,7 @@ u {
 .maincontent .menucontent nav ul li a {
     color: #7a7a7a;
     text-decoration: none;
+    display: block;
 }
 .maincontent .menucontent nav ul li a:hover {
     text-decoration: none;
@@ -385,6 +394,10 @@ u {
         margin-bottom: 20px;
         display: none;
         font-weight: normal;
+    }
+
+    & > span {
+       display: block;
     }
 
     &.show-menu {
@@ -723,5 +736,17 @@ u {
 }
 
 .product .title {
-	min-height: 70px !important;
+	min-height: 30px !important;
+}
+
+.product-image .imageFrame {
+    box-shadow: none!important;
+}
+
+/* ImageZoom plugin CSS */
+.easyzoom {
+    display: inline-block;
+}
+.easyzoom img {
+    vertical-align: bottom;
 }

@@ -2,9 +2,9 @@
 
 $(function () {
     //onload
-    var $menuItems = $('.main-column-left nav > ul > li');
+    var $menuItems = $('.main-column-left nav>ul>li>span');
     $menuItems.click(function (event) {
-        return $(event.delegateTarget).toggleClass('show-menu');
+        $(event.delegateTarget).parent().toggleClass('show-menu');
     });
     $menuItems.each(function (index, elem) {
         if ($(elem).find('.hybridsaas-menu-current').length != 0) {
@@ -27,4 +27,14 @@ $(function () {
             }
         }).appendTo($(elem).children('.price'));
     });
+
+    var $imageFrame = $('.product-left .product-image .imageFrame');
+    var $zoomImage = $($imageFrame).children('img');
+    var link = $zoomImage.attr('src');
+    $imageFrame.addClass('easyzoom');
+    $zoomImage.detach();
+    $imageFrame.append('<a href="' + link + '"></div>');
+    $imageFrame.children('a').append($zoomImage);
+
+    $('.easyzoom').easyZoom();
 });
