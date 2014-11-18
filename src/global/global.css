@@ -217,10 +217,22 @@ u {
   text-align: center;
   margin-top: -29px;
   width: 162px;
-  height: 22px;
   font-size: 12px;
   line-height: 22px;
   color: #fff;
+}
+.maincontent #columns .main-column-right .container .product .price .buyButton {
+  float: left;
+  border-radius: 10px;
+  background: #F4F4F2;
+  color: #5D5D5D;
+  border: 1px solid #EFEBE8;
+  width: 85px;
+  height: 30px;
+  font-size: 12px;
+}
+.maincontent #columns .main-column-right .container .product .price .buyButton:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 .maincontent #columns .main-column-right .container .product a {
   font-weight: bold;
