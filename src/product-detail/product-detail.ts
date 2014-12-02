@@ -116,6 +116,6 @@ $(() => {
     var $bigImage = $('<div class="big-image"></div>');
 
     $('.product-right').prepend($bigImage);
-
-
+	$('.product-right .input-item:first').html('<b>Do you have any comments?</b>');
+	$('.product-right #submit').html('Add to basket');
 })
