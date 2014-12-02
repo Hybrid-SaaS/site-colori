@@ -696,6 +696,70 @@ u {
   background-color: #ea6b00!important;
   border: 1px solid #d86200!important;
 }
+#bottommenu {
+  border-top: 1px solid #F69240;
+  border-bottom: 1px solid #F69240;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+  height: 110px;
+  padding: 15px 0;
+  display: block;
+  background: linear-gradient(to bottom, #ffebda 0, #ffd2ad 62%, #ffbe87 100%);
+}
+#bottommenu #footer_logo {
+  background-image: url('c_logo.png');
+  background-repeat: no-repeat;
+  position: relative;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 15px;
+  width: 60px;
+  height: 80px;
+}
+#bottommenu nav {
+  position: absolute;
+  width: 100%;
+}
+#bottommenu nav ul {
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+#bottommenu nav > ul > li {
+  font-size: 12px;
+  float: left;
+  height: 100px;
+  width: 200px;
+  display: inline-block;
+}
+#bottommenu nav > ul > li a {
+  text-decoration: none;
+  color: black;
+}
+#bottommenu nav > ul > li span {
+  font-size: 18px;
+  color: darkblue;
+}
+#bottommenu nav > ul > li ul #footermail {
+  width: 200px;
+}
+#bottommenu nav > ul > li ul #footermail span {
+  font-size: 14px;
+  text-decoration: none;
+}
+#bottommenu2 {
+  padding: 20px 150px;
+  height: 75px;
+}
+#bottommenu2 nav ul {
+  float: right;
+}
+#bottommenu2 nav ul li {
+  margin: 0 10px;
+  display: block;
+  float: left;
+  height: 20px;
+}
 .easyzoom {
   position: relative;
   overflow: hidden;
