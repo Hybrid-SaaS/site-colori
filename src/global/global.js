@@ -324,11 +324,9 @@ $(function () {
         var decimals = price.substring(price.length - 2, price.length);
         if (decimals = '00') {
             price = price.substring(0, price.length - 3);
-            $product.html(price);
+            $product.text(price + ",-");
         }
     }
-
-    var $sizes = $('.related-container .related.open .imageFrame .size');
 
     if (WebPage.Data.productGuid) {
         $('#submit').click(function (event) {

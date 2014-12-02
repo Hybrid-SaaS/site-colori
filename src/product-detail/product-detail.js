@@ -63,6 +63,21 @@ $(function () {
                             }
                         });
                     } else {
+                        // Create product dictionary and remove duplicates
+                        var productDict = {};
+                        for (var x = 0; x < products.length; x++) {
+                            if (typeof productDict[products[x]['dimensions']] == 'undefined') {
+                                productDict[products[x]['dimensions']] = products[x];
+                            }
+                        }
+
+                        // Empty products object
+                        products = [];
+
+                        for (var key in productDict) {
+                            products.push(productDict[key]);
+                        }
+
                         products.sort(function (a, b) {
                             var x = a['dimensions'];
                             var y = b['dimensions'];
