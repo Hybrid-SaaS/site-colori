@@ -280,6 +280,28 @@ $(function () {
 
 $(function () {
     //onload
+    var firstload;
+    var firstvisit = getCookie('firstvisit');
+    if (firstvisit == '' || firstvisit == 'true') {
+        document.cookie = "firstvisit=true";
+        var $body = $('body');
+        $body.append('<div id="darkFill"></div>');
+        $body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>');
+        var $dark = $('#darkFill');
+        var $ad = $('#popupAd');
+
+        $dark.delay(1500).fadeIn('slow');
+        $ad.delay(1500).fadeIn('slow');
+
+        $('#popupAd').click(function (event) {
+            document.cookie = "firstvisit=false";
+            $dark.fadeOut('slow');
+            $ad.fadeOut('slow');
+        });
+    } else {
+        document.cookie = "firstvisit=false";
+    }
+
     var $menuItems = $('.main-column-left nav>ul>li>span');
     var index = getCookie('indexmenu');
     if (index != '') {
@@ -293,8 +315,10 @@ $(function () {
         c.toggleClass('show-menu');
         if (c.hasClass('show-menu')) {
             document.cookie = "indexmenu=" + c.index();
-        } else {
+        } else if (!$('.menucontent > nav > ul > li').hasClass('show-menu')) {
             document.cookie = "indexmenu=0";
+        } else {
+            // Do nothing
         }
     });
 
@@ -370,7 +394,7 @@ $(function () {
             if ($set) {
                 //not complete, abort
                 var msg = new WebPage.Message.Settings();
-                msg.type = WebPage.Message.MessageType.Error;
+                msg.type = 3 /* Error */;
                 msg.body = WebPage.resourceString('BasketNotAllRequiredFieldsFilled');
                 msg.header = WebPage.resourceString('Basket');
                 WebPage.Message.show(msg, function () {
@@ -390,7 +414,7 @@ $(function () {
                 location.href = "/Website/Pages/Basket";
             }).fail(function () {
                 msg = new WebPage.Message.Settings();
-                msg.type = WebPage.Message.MessageType.Error;
+                msg.type = 3 /* Error */;
                 msg.body = WebPage.resourceString('BasketAddError');
                 msg.header = WebPage.resourceString('Basket');
 

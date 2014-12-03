@@ -266,6 +266,28 @@ $(() => WebPage.load());
 $(() => {
 
     //onload
+	var firstload;
+	var firstvisit = getCookie('firstvisit');
+	if (firstvisit == '' || firstvisit == 'true') {
+		document.cookie = "firstvisit=true";
+		var $body = $('body');
+		$body.append('<div id="darkFill"></div>');
+		$body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>')
+		var $dark = $('#darkFill');
+		var $ad = $('#popupAd');
+
+		$dark.delay(1500).fadeIn('slow');
+		$ad.delay(1500).fadeIn('slow');
+
+		$('#popupAd').click((event) => {
+			document.cookie = "firstvisit=false";
+			$dark.fadeOut('slow');
+			$ad.fadeOut('slow');
+		});
+	} else {
+		document.cookie = "firstvisit=false";
+	}
+
 	var $menuItems = $('.main-column-left nav>ul>li>span');
 	var index = getCookie('indexmenu');
 	if (index != '') {
@@ -279,8 +301,11 @@ $(() => {
 		c.toggleClass('show-menu');
 		if (c.hasClass('show-menu')) {
 			document.cookie = "indexmenu=" + c.index();
-		} else {
+		}
+		else if (!$('.menucontent > nav > ul > li').hasClass('show-menu')) {
 			document.cookie = "indexmenu=0";
+		} else {
+			// Do nothing
 		}
 	});
 
@@ -321,7 +346,6 @@ $(() => {
 	}
 
 	if (WebPage.Data.productGuid) {
-
 		$('#submit').click((event) => {
 			event.preventDefault();
 			var data = {

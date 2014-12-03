@@ -873,6 +873,36 @@ u {
 .easyzoom-flyout {
 	position:absolute;
 	z-index: 100;
-	//overflow: hidden;
 	background: #FFF;
+}
+
+#darkFill {
+	display: none;
+	z-index: 499;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #000;
+	opacity: 0.5;
+}
+
+#popupAd {
+	display: none;
+	z-index: 500;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	height: 520px;
+	margin-top: -260px;
+	width: 800px;
+	margin-left: -400px;
+	padding: 20px 2%;
+	font-family: Calibri, Arial, sans-serif;
+	background: #FFF;
+}
+
+#popClose {
+	float: right;
 }
