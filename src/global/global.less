@@ -1,3 +1,5 @@
+@color-highlight: #EA5518;
+
 //offset breedte
 @offset-base: 10px;
 
@@ -6,6 +8,10 @@
 @offset-default: 200px;
 
 //global
+html, body {
+	width: 100%;
+}
+
 .site {
     .column {
         width: @offset-default + @offset-base;
@@ -105,7 +111,7 @@ a {
     color: #06e;
 }
 a:hover {
-    color: #ea5518 !important;
+    color: @color-highlight !important;
 }
 a:visited {
     color: #1a1e86;
@@ -151,6 +157,20 @@ u {
     padding-left: 20px !important;
     width: 1040px !important;
 }
+
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .header {
+    display: none;
+}
+
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .footer {
+    display: none;
+}
+
+.maincontent.nomenu .main-column-right .product.detail .product-right .product-options .body {
+    border-top: 1px solid #D2CFCD;
+    box-shadow: none;
+}
+
 .maincontent #columns {
     display: table;
 }
@@ -212,8 +232,10 @@ u {
 .maincontent #columns .main-column-right .container .product {
     background: none !important;
     background: #fff;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .15);
+    //*box-shadow: 2px 2px 4px rgba(0, 0, 0, .15);
+    box-shadow: none!important;
     border: 1px solid #d5d5ce;
+    min-height: 300px!important;
 }
 .maincontent #columns .main-column-right .container .product:hover {
     border: 1px solid #707070;
@@ -241,10 +263,24 @@ u {
     text-align: center;
     margin-top: -29px;
     width: 162px;
-    height: 22px;
+    //*height: 22px;
     font-size: 12px;
     line-height: 22px;
     color: #fff;
+}
+.maincontent #columns .main-column-right .container .product .price .buyButton {
+    float: left;
+    border-radius: 10px;
+    background: #F4F4F2;
+    color: #5D5D5D;
+    border: 1px solid #EFEBE8;
+    width: 85px;
+    height: 30px;
+    font-size: 12px;
+
+    &:hover{
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    }
 }
 .maincontent #columns .main-column-right .container .product a {
     font-weight: bold;
@@ -254,16 +290,18 @@ u {
 }
 .maincontent #columns .main-column-right .container .product a .title {
     color: #5d5d5d;
-    height: 50px;
+    height: 40px;
 }
 .maincontent #columns .main-column-right .container a {
     display: inline-block;
     margin-left: 0;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 .maincontent #columns .main-column-right .container a .path {
-    width: 405px;
+    width: 403px;
     height: 188px;
+    box-shadow: none;
+    border: 1px solid #D5D5CE;
 }
 .maincontent #columns .main-column-right .usercontent.below {
     margin-bottom: 50px;
@@ -328,6 +366,7 @@ u {
 .maincontent .menucontent nav ul li a {
     color: #7a7a7a;
     text-decoration: none;
+    display: block;
 }
 .maincontent .menucontent nav ul li a:hover {
     text-decoration: none;
@@ -336,23 +375,84 @@ u {
 .maincontent .menucontent nav>ul {
     margin-left: 10px;
     font-size: 14px;
+    &>li>span {
+        text-decoration: underline;
+        ul {
+            text-decoration: none;
+        }
+    }
 }
-.maincontent .menucontent nav>ul>li.hybridsaas-menu-has-children>a {
-    border-bottom: solid 2px #63248f;
+
+.maincontent .menucontent nav > ul > li {
+    cursor: pointer;
+
+    &:hover {
+        color: @color-highlight;
+    }
+
+    .hybridsaas-menu-has-children>a {
+        border-bottom: solid 2px #63248f;
+    }
+
+    ul {
+        margin-bottom: 20px;
+        display: none;
+        font-weight: normal;
+    }
+
+    & > span {
+       display: block;
+    }
+
+    &.show-menu {
+        font-weight: bold;
+        color: @color-highlight;
+        ul {
+            display: block !important;     
+        }
+    }
 }
+
 .maincontent .menucontent nav>ul>li>a {
     font-weight: bold;
     font-size: 16px;
     display: block;
     padding-bottom: 1px;
 }
-.maincontent .menucontent nav>ul>li ul {
-    margin-bottom: 20px;
-}
+
 .maincontent .menucontent nav>ul>li ul li {
     margin-top: 4px;
     text-decoration: none;
 }
+
+.related-container .related .imageFrame .images {
+    padding: 0;
+}
+
+.related-container .related.open .imageFrame .images {
+  padding: 5px 0;
+}
+
+.related-container .related.open .imageFrame {
+  min-height: 0 !important;
+}
+
+.related-container .related .imageFrame .size {
+  display: none;
+}
+
+.related-container .related.open .imageFrame .size {
+  display: block !important;
+  padding: 2px 0;
+  font-weight: bold;
+
+  &:hover {
+      color: @color-highlight;
+      background: #f1f1ff;
+      cursor: pointer;
+  }
+}
+
 #footerFrame {
     width: 1060px;
     margin: 20px auto 0 auto;
@@ -640,5 +740,135 @@ u {
 }
 
 .product .title {
-	min-height: 70px !important;
+	min-height: 30px !important;
+}
+
+.product-image .imageFrame {
+    box-shadow: none!important;
+}
+
+.product-options .body .number {
+	background-color: #ea6b00!important;
+	border: 1px solid #d86200!important;
+}
+
+// Bottom menu styling
+#bottommenu {
+	border-top: 1px solid #F69240;
+	border-bottom: 1px solid #F69240;
+	height: 110px;
+	padding: 15px 0;
+	display: block;
+	background-color: #ffebda;
+
+	#footer_logo {
+		background-image: url('c_logo.png');
+		background-repeat: no-repeat;
+		position: relative;
+		margin-left: 60px;
+		margin-right: 60px;
+		margin-bottom: 15px;
+		width: 60px;
+		height: 80px;
+	}
+
+	nav {
+		position: absolute;
+		width: 100%;
+		margin-left: 80px;
+		ul {
+			width: 1100px;
+			height: 120px;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			margin-left: auto;
+			margin-right: auto;
+			position: relative;
+		}
+	}
+
+	nav > ul > li {
+		font-size: 12px;
+		float: left;
+		height: 100px;
+		width: 200px;
+		display: inline-block;
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		span {
+			font-size: 18px;
+			color: darkblue;
+		}
+
+		ul #footermail {
+			width: 200px;
+			span {
+				font-size: 14px;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+#bottommenu2 {
+	padding: 20px 150px;
+	height: 75px;
+	nav ul {
+		float: right;
+	}
+	nav ul li {
+		margin: 0 10px;
+		display: block;
+		float: left;
+		height: 20px;
+	}
+}
+
+// CSS for image-zoom in product page
+.easyzoom {
+	position: relative;
+    overflow: hidden;
+
+	/* 'Shrink-wrap' the element */
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+.easyzoom img {
+	vertical-align: bottom;
+}
+
+.easyzoom.is-loading img {
+	cursor: progress;
+}
+
+.easyzoom.is-ready img {
+	cursor: crosshair;
+}
+
+.easyzoom.is-error  img {
+	cursor: not-allowed;
+}
+
+.easyzoom-notice {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 150;
+	width: 10em;
+	margin: -1em 0 0 -5em;
+	line-height: 2em;
+	text-align: center;
+	background: #FFF;
+	box-shadow: 0 0 10px #888;
+}
+
+.easyzoom-flyout {
+	position:absolute;
+	z-index: 100;
+	//overflow: hidden;
+	background: #FFF;
 }
