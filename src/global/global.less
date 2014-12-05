@@ -766,7 +766,7 @@ u {
 		background-image: url('c_logo.png');
 		background-repeat: no-repeat;
 		position: relative;
-		margin-left: 60px;
+		margin-left: 45px;
 		margin-right: 60px;
 		margin-bottom: 15px;
 		width: 60px;
@@ -843,15 +843,27 @@ u {
 	}
 
 	nav ul {
-		float: right;
-	}
-	nav ul li {
-		margin: 0 10px;
-		display: block;
-		float: left;
-		height: 20px;
+		text-align: right;
+		width: 1060px;
+		height: 50px;
 	}
 
+	nav ul li {
+		top: 25px;
+		margin: 0 10px;
+		display: inline;
+		right: 0;
+		position: relative;
+	}
+
+	nav ul li#footer_payments {
+		top: 0;
+		display: inline-block;
+		float: left;
+		height: 50px;
+		width: 200px;
+		background-image: url('//colori.azurewebsites.net/resources/payment.jpg');
+	}
 
 }
 

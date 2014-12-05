@@ -713,7 +713,7 @@ u {
   background-image: url('c_logo.png');
   background-repeat: no-repeat;
   position: relative;
-  margin-left: 60px;
+  margin-left: 45px;
   margin-right: 60px;
   margin-bottom: 15px;
   width: 60px;
@@ -782,13 +782,24 @@ u {
   position: relative;
 }
 #bottommenu2 nav ul {
-  float: right;
+  text-align: right;
+  width: 1060px;
+  height: 50px;
 }
 #bottommenu2 nav ul li {
+  top: 25px;
   margin: 0 10px;
-  display: block;
+  display: inline;
+  right: 0;
+  position: relative;
+}
+#bottommenu2 nav ul li#footer_payments {
+  top: 0;
+  display: inline-block;
   float: left;
-  height: 20px;
+  height: 50px;
+  width: 200px;
+  background-image: url('//colori.azurewebsites.net/resources/payment.jpg');
 }
 .easyzoom {
   position: relative;
