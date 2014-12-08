@@ -354,7 +354,7 @@ $(function () {
         var $product = $products.eq(x);
         var price = $product.text();
         var decimals = price.substring(price.length - 2, price.length);
-        if (decimals = '00') {
+        if (decimals == '00') {
             price = price.substring(0, price.length - 3);
             $product.text(price + ",-");
         }
@@ -424,6 +424,12 @@ $(function () {
         });
     }
     ;
+
+    $('.intro.item .description').hide();
+    var $detail = $('.product-left .product-detail');
+    $($detail).children('.description').hide();
+    var $innercontent = $($detail).children('.info').children('.details').first().html();
+    $($detail).children('.info').html($innercontent).css('marginBottom', '25px');
 });
 
 function getCookie(cname) {
