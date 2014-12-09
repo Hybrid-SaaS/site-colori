@@ -285,7 +285,7 @@ $(function () {
     if (firstvisit == '' || firstvisit == 'true') {
         document.cookie = "firstvisit=true";
         var $body = $('body');
-        $body.append('<div id="darkFill"></div>');
+        $body.append('<div id="darkFill popup"></div>');
         $body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>');
         var $dark = $('#darkFill');
         var $ad = $('#popupAd');

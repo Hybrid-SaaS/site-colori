@@ -271,8 +271,8 @@ $(() => {
 	if (firstvisit == '' || firstvisit == 'true') {
 		document.cookie = "firstvisit=true";
 		var $body = $('body');
-		$body.append('<div id="darkFill"></div>');
-		$body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>')
+		$body.append('<div id="darkFill popup"></div>');
+		$body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>');
 		var $dark = $('#darkFill');
 		var $ad = $('#popupAd');
 
@@ -416,8 +416,6 @@ $(() => {
 	$($detail).children('.description').hide();
 	var $innercontent = $($detail).children('.info').children('.details').first().html();
 	$($detail).children('.info').html($innercontent).css('marginBottom', '25px');
-
-
 });
 
 function getCookie(cname) {
