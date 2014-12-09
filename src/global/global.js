@@ -285,13 +285,17 @@ $(function () {
     if (firstvisit == '' || firstvisit == 'true') {
         document.cookie = "firstvisit=true";
         var $body = $('body');
-        $body.append('<div id="darkFill popup"></div>');
-        $body.append('<div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div>');
+        $body.append('<div id="ad"><div id="darkFill" class="popup"></div><div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div></div>');
         var $dark = $('#darkFill');
         var $ad = $('#popupAd');
 
-        $dark.delay(1500).fadeIn('slow');
         $ad.delay(1500).fadeIn('slow');
+        $dark.delay(1500).fadeIn('slow', function () {
+            if ($('#popupAd').is(':hidden')) {
+                $ad.hide();
+                $dark.hide();
+            }
+        });
 
         $('#popupAd').click(function (event) {
             document.cookie = "firstvisit=false";
