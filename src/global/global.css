@@ -120,7 +120,7 @@ u {
   min-height: 500px;
 }
 .maincontent.nomenu {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 .maincontent.nomenu .main-column-left {
   display: none !important;
@@ -800,7 +800,7 @@ u {
   display: inline-block;
   float: left;
   height: 50px;
-  width: 200px;
+  width: 210px;
   background-image: url('//colori.azurewebsites.net/resources/payment.jpg');
 }
 .easyzoom {
