@@ -281,7 +281,8 @@ $(function () {
 $(function () {
     //onload
     var firstload;
-    var firstvisit = getCookie('firstvisit');
+    //var firstvisit = getCookie('firstvisit');
+	var firstvisit = 'false';
     if (firstvisit == '' || firstvisit == 'true') {
         document.cookie = "firstvisit=true";
         var $body = $('body');
