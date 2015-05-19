@@ -1,30 +1,26 @@
 /// <reference path="../definition/jquery.d.ts" />
 var WebPage;
 (function (WebPage) {
+    var References;
     (function (References) {
+        var MessageBox;
         (function (MessageBox) {
             MessageBox.$messageLayer;
             MessageBox.$message;
-
             MessageBox.$messageHeader;
             MessageBox.$messageBody;
-        })(References.MessageBox || (References.MessageBox = {}));
-        var MessageBox = References.MessageBox;
-
+        })(MessageBox = References.MessageBox || (References.MessageBox = {}));
         References.$document;
         References.$html;
         References.$body;
-    })(WebPage.References || (WebPage.References = {}));
-    var References = WebPage.References;
-
+    })(References = WebPage.References || (WebPage.References = {}));
+    var Data;
     (function (Data) {
         Data.language;
         Data.country;
         Data.productGuid;
         Data.basketGuid;
-    })(WebPage.Data || (WebPage.Data = {}));
-    var Data = WebPage.Data;
-
+    })(Data = WebPage.Data || (WebPage.Data = {}));
     var Event = (function () {
         function Event(eventType, data) {
             this.eventType = eventType;
@@ -33,28 +29,26 @@ var WebPage;
         return Event;
     })();
     WebPage.Event = Event;
-
     (function (EventType) {
         EventType[EventType["BeforeLoad"] = 0] = "BeforeLoad";
         EventType[EventType["Load"] = 1] = "Load";
     })(WebPage.EventType || (WebPage.EventType = {}));
     var EventType = WebPage.EventType;
+    var Events;
     (function (Events) {
+        var Handlers;
         (function (Handlers) {
             Handlers.onBeforeLoad = [];
             Handlers.onLoad = [];
-        })(Events.Handlers || (Events.Handlers = {}));
-        var Handlers = Events.Handlers;
-
+        })(Handlers = Events.Handlers || (Events.Handlers = {}));
         function fire(eventType, data) {
-            if (typeof data === "undefined") { data = null; }
+            if (data === void 0) { data = null; }
             var handlers = getHandlers(eventType);
             for (var x = 0; x < handlers.length; x++) {
                 handlers[x].call(new Event(eventType, data));
             }
         }
         Events.fire = fire;
-
         function getHandlers(eventType) {
             switch (eventType) {
                 case 1 /* Load */:
@@ -64,75 +58,62 @@ var WebPage;
             }
             return null;
         }
-
         function on(eventType, handler) {
             getHandlers(eventType).push(handler);
         }
         Events.on = on;
-    })(WebPage.Events || (WebPage.Events = {}));
-    var Events = WebPage.Events;
-
+    })(Events = WebPage.Events || (WebPage.Events = {}));
     //wil be overridden
     function resourceString(name) {
         return 'no translation: ' + name;
     }
     WebPage.resourceString = resourceString;
-
     //init the page (onload)
     function load() {
         Events.fire(0 /* BeforeLoad */);
-
         References.$document = $(document);
         References.$html = $('html');
         References.$body = $(document.body);
-
         //set language
         Data.language = References.$html.attr('lang');
         Data.country = References.$html.data('country');
-
         //init basket
         Basket.init();
-
         //verplichte velden
         $('.required').change(function (event) {
             var $this = $(event.target);
-
             if ($this.val().length) {
                 $this.addClass('ok');
-            } else {
+            }
+            else {
                 $this.removeClass('ok');
             }
         });
-
         Events.fire(1 /* Load */);
     }
     WebPage.load = load;
-
+    var Basket;
     (function (Basket) {
+        var References;
         (function (References) {
             References.$basket;
             References.$amount;
             References.$total;
-        })(Basket.References || (Basket.References = {}));
-        var References = Basket.References;
-
+        })(References = Basket.References || (Basket.References = {}));
+        var Events;
         (function (Events) {
             Events.onChange;
-        })(Basket.Events || (Basket.Events = {}));
-        var Events = Basket.Events;
-
+        })(Events = Basket.Events || (Basket.Events = {}));
         function init() {
             References.$basket = $('#shoppingCart');
             References.$amount = $('#shoppingcart_amount');
             References.$total = $('#shoppingcart_total');
-
             updateClient(true);
         }
         Basket.init = init;
-
         function updateClient(init) {
             var _this = this;
-            if (typeof init === "undefined") { init = false; }
+            if (init === void 0) { init = false; }
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -144,10 +125,8 @@ var WebPage;
                     if (result === false)
                         return;
                 }
-
                 References.$total.text(data.total);
                 References.$amount.text(data.count);
-
                 if (!init) {
                     $('.basket-total').text(data.total);
                     $('.basket-total-incl').text(data.totalIncl);
@@ -156,15 +135,13 @@ var WebPage;
             });
         }
         Basket.updateClient = updateClient;
-
         function updateAmount(id, amount, callBack) {
             var _this = this;
-            if (typeof callBack === "undefined") { callBack = null; }
+            if (callBack === void 0) { callBack = null; }
             var data = {};
             data["property"] = 'amount';
             data["id"] = id;
             data["amount"] = amount;
-
             $.ajax({
                 type: 'POST',
                 data: data,
@@ -175,31 +152,25 @@ var WebPage;
                 if (callBack != null) {
                     callBack.call(_this, result);
                 }
-
                 updateClient();
             });
         }
         Basket.updateAmount = updateAmount;
-
         function remove(id) {
             var data = {};
             data["property"] = 'remove';
             data["id"] = id;
-
             $.ajax({
                 type: 'POST',
                 data: data,
                 dataType: 'text',
                 url: '/Website/Basket/Update',
                 cache: false
-            }).done(function () {
-                return updateClient();
-            });
+            }).done(function () { return updateClient(); });
         }
         Basket.remove = remove;
-    })(WebPage.Basket || (WebPage.Basket = {}));
-    var Basket = WebPage.Basket;
-
+    })(Basket = WebPage.Basket || (WebPage.Basket = {}));
+    var Message;
     (function (Message) {
         (function (MessageType) {
             MessageType[MessageType["Information"] = 0] = "Information";
@@ -208,7 +179,6 @@ var WebPage;
             MessageType[MessageType["Error"] = 3] = "Error";
         })(Message.MessageType || (Message.MessageType = {}));
         var MessageType = Message.MessageType;
-
         var Settings = (function () {
             function Settings() {
                 this.type = 0 /* Information */;
@@ -216,33 +186,27 @@ var WebPage;
             return Settings;
         })();
         Message.Settings = Settings;
-
         function show(messagesettings, callbackFunction) {
-            if (typeof callbackFunction === "undefined") { callbackFunction = null; }
+            if (callbackFunction === void 0) { callbackFunction = null; }
             if (!References.MessageBox.$messageLayer) {
                 References.MessageBox.$messageLayer = $('<div id="message-container"><div class="message">' + '<div class="message-header"></div>' + '<div class="message-body"></div>' + '</div></div>');
-
                 References.MessageBox.$messageLayer.appendTo(References.$body);
                 References.MessageBox.$message = References.MessageBox.$messageLayer.find('.message');
                 References.MessageBox.$messageHeader = References.MessageBox.$message.find('.message-header');
                 References.MessageBox.$messageBody = References.MessageBox.$message.find('.message-body');
-
                 References.MessageBox.$messageLayer.bind('click', function () {
                     References.MessageBox.$message.animate({ 'top': '150%' }, 200, function () {
                         References.MessageBox.$messageLayer.fadeOut(200);
-
                         if (callbackFunction != null) {
                             callbackFunction.call(this);
                         }
                     });
                 });
             }
-
             References.MessageBox.$messageLayer.focus();
             setTimeout(function () {
                 References.MessageBox.$messageLayer.trigger('click');
             }, 2500);
-
             References.MessageBox.$messageHeader.text(messagesettings.header);
             References.MessageBox.$messageBody.text(messagesettings.body);
             References.MessageBox.$message.removeClass();
@@ -260,36 +224,27 @@ var WebPage;
                     References.MessageBox.$message.addClass('message info');
                     break;
             }
-
             References.MessageBox.$messageLayer.fadeIn(200);
             var $window = $(window);
             var top = Math.abs((($window.height() - References.MessageBox.$message.outerHeight()) / 2));
-
             //top = $window.scrollTop();
             References.MessageBox.$message.css('top', 0).animate({ 'top': top }, 200);
         }
         Message.show = show;
-    })(WebPage.Message || (WebPage.Message = {}));
-    var Message = WebPage.Message;
+    })(Message = WebPage.Message || (WebPage.Message = {}));
 })(WebPage || (WebPage = {}));
-
 //Load website
-$(function () {
-    return WebPage.load();
-});
-
+$(function () { return WebPage.load(); });
 $(function () {
     //onload
     var firstload;
-    //var firstvisit = getCookie('firstvisit');
-	var firstvisit = 'false';
+    var firstvisit = getCookie('firstvisit');
     if (firstvisit == '' || firstvisit == 'true') {
         document.cookie = "firstvisit=true";
         var $body = $('body');
         $body.append('<div id="ad"><div id="darkFill" class="popup"></div><div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div></div>');
         var $dark = $('#darkFill');
         var $ad = $('#popupAd');
-
         $ad.delay(1500).fadeIn('slow');
         $dark.delay(1500).fadeIn('slow', function () {
             if ($('#popupAd').is(':hidden')) {
@@ -297,22 +252,22 @@ $(function () {
                 $dark.hide();
             }
         });
-
         $('#popupAd').click(function (event) {
             document.cookie = "firstvisit=false";
             $dark.fadeOut('slow');
             $ad.fadeOut('slow');
         });
-    } else {
+    }
+    else {
         document.cookie = "firstvisit=false";
     }
-
     var $menuItems = $('.main-column-left nav>ul>li>span');
     var index = getCookie('indexmenu');
     if (index != '') {
         var parsedindex = parseInt(index);
         $menuItems.eq(parsedindex).parent().addClass('show-menu');
-    } else {
+    }
+    else {
         $menuItems.eq(0).parent().addClass('show-menu');
     }
     $menuItems.click(function (event) {
@@ -320,13 +275,13 @@ $(function () {
         c.toggleClass('show-menu');
         if (c.hasClass('show-menu')) {
             document.cookie = "indexmenu=" + c.index();
-        } else if (!$('.menucontent > nav > ul > li').hasClass('show-menu')) {
+        }
+        else if (!$('.menucontent > nav > ul > li').hasClass('show-menu')) {
             document.cookie = "indexmenu=0";
-        } else {
-            // Do nothing
+        }
+        else {
         }
     });
-
     var $products = $('.container > .product');
     var buyButton = $(document.createElement('div'));
     $products.each(function (index, elem) {
@@ -335,14 +290,11 @@ $(function () {
             'value': 'Add to basket',
             'class': 'buyButton',
             'click': function () {
-                $.getJSON('/Website/Basket/Add', { 'product': $(elem).data('productId'), 'amount': 1 }).done(function () {
-                    return WebPage.Basket.updateClient();
-                });
+                $.getJSON('/Website/Basket/Add', { 'product': $(elem).data('productId'), 'amount': 1 }).done(function () { return WebPage.Basket.updateClient(); });
                 return false;
             }
         }).appendTo($(elem).children('.price'));
     });
-
     var $imageFrame = $('.product-left .product-image .imageFrame');
     var $zoomImage = $($imageFrame).children('img');
     var link = $zoomImage.data('guid');
@@ -350,11 +302,8 @@ $(function () {
     $zoomImage.detach();
     $imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
     $imageFrame.children('a').append($zoomImage);
-
     $easyzoom = $('.easyzoom').easyZoom();
-
     var $products = $('.product .price span');
-
     for (var x = 0; x < $products.length; x++) {
         var $product = $products.eq(x);
         var price = $product.text();
@@ -364,7 +313,16 @@ $(function () {
             $product.text(price + ",-");
         }
     }
-
+    var $products = $('.product .originalPrice span');
+    for (var x = 0; x < $products.length; x++) {
+        var $product = $products.eq(x);
+        var price = $product.text();
+        var decimals = price.substring(price.length - 2, price.length);
+        if (decimals == '00') {
+            price = price.substring(0, price.length - 3);
+            $product.text(price + ",-");
+        }
+    }
     if (WebPage.Data.productGuid) {
         $('#submit').click(function (event) {
             event.preventDefault();
@@ -374,7 +332,6 @@ $(function () {
                 remark: $('#remark').val(),
                 amount: 1
             };
-
             var $extension = $('.extension');
             if ($extension.length > 0) {
                 var $set = null;
@@ -387,11 +344,11 @@ $(function () {
                                     $set = $element;
                                 }
                                 $element.addClass('missing');
-                            } else {
+                            }
+                            else {
                                 $element.removeClass('missing');
                             }
                         }
-
                         data["extension:" + $element.attr('id')] = $element.val();
                     }
                 }
@@ -405,10 +362,8 @@ $(function () {
                 WebPage.Message.show(msg, function () {
                     $set.focus();
                 });
-
                 return;
             }
-
             $.ajax({
                 type: 'POST',
                 url: '/Website/Basket/Add',
@@ -422,21 +377,18 @@ $(function () {
                 msg.type = 3 /* Error */;
                 msg.body = WebPage.resourceString('BasketAddError');
                 msg.header = WebPage.resourceString('Basket');
-
                 WebPage.Message.show(msg);
             }).always(function () {
             });
         });
     }
     ;
-
     $('.intro.item .description').hide();
     var $detail = $('.product-left .product-detail');
     $($detail).children('.description').hide();
     var $innercontent = $($detail).children('.info').children('.details').first().html();
     $($detail).children('.info').html($innercontent).css('marginBottom', '25px');
 });
-
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
