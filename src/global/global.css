@@ -219,6 +219,14 @@ u {
 .maincontent #columns .main-column-right .container .product .number {
   display: none;
 }
+.maincontent #columns .main-column-right .container .product .originalPrice {
+  color: #63248f;
+  text-align: right;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 10px;
+  height: 30px;
+}
 .maincontent #columns .main-column-right .container .product .price {
   color: #63248f;
   text-align: right;
