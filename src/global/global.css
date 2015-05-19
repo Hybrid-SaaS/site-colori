@@ -129,6 +129,14 @@ u {
   padding-left: 20px !important;
   width: 1040px !important;
 }
+
+.no-more-order .product-right {
+  display: none;
+}
+.no-more-order .buyButton {
+  display: none;
+}
+
 .maincontent.nomenu .main-column-right .product.detail .product-right .product-options .header {
   display: none;
 }
@@ -219,12 +227,24 @@ u {
 .maincontent #columns .main-column-right .container .product .number {
   display: none;
 }
+
+.product-options .originalPrice {
+  font-weight: bold;
+  color: red;
+  font-size: 12px;
+  margin-top: -18px;
+  margin-left: 165px;
+  height: 30px;
+  text-decoration: line-through;
+}
+
+
 .maincontent #columns .main-column-right .container .product .originalPrice {
-  color: #63248f;
+  color: red;
   text-align: right;
   font-weight: bold;
   font-size: 22px;
-  margin-top: 10px;
+  margin-top: -60px;
   height: 30px;
   text-decoration: line-through;
 }
@@ -1668,6 +1688,7 @@ td {
 /* =============================================================================
    General Classes
    ========================================================================== */
+
 .vMiddle {
   vertical-align: middle;
 }
@@ -1682,4 +1703,5 @@ td {
   height: 100%;
   overflow: auto;
 }
+
 /*# sourceMappingURL=global.css.map */
