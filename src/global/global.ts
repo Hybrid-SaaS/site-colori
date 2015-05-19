@@ -266,7 +266,7 @@ $(() => WebPage.load());
 $(() => {
 
     //onload
-	var firstload;
+	/*var firstload;
 	var firstvisit = getCookie('firstvisit');
 	if (firstvisit == '' || firstvisit == 'true') {
 		document.cookie = "firstvisit=true";
@@ -290,7 +290,7 @@ $(() => {
 		});
 	} else {
 		document.cookie = "firstvisit=false";
-	}
+	}*/
 
 	var $menuItems = $('.main-column-left nav>ul>li>span');
 	var index = getCookie('indexmenu');

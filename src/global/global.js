@@ -237,7 +237,7 @@ var WebPage;
 $(function () { return WebPage.load(); });
 $(function () {
     //onload
-    var firstload;
+    /*var firstload;
     var firstvisit = getCookie('firstvisit');
     if (firstvisit == '' || firstvisit == 'true') {
         document.cookie = "firstvisit=true";
@@ -245,22 +245,23 @@ $(function () {
         $body.append('<div id="ad"><div id="darkFill" class="popup"></div><div id="popupAd"><a id="popClose">Close</a><img src="//colori.azurewebsites.net/resources/ad.jpg" /></div></div>');
         var $dark = $('#darkFill');
         var $ad = $('#popupAd');
+
         $ad.delay(1500).fadeIn('slow');
-        $dark.delay(1500).fadeIn('slow', function () {
+        $dark.delay(1500).fadeIn('slow', () => {
             if ($('#popupAd').is(':hidden')) {
                 $ad.hide();
                 $dark.hide();
             }
         });
-        $('#popupAd').click(function (event) {
+
+        $('#popupAd').click((event) => {
             document.cookie = "firstvisit=false";
             $dark.fadeOut('slow');
             $ad.fadeOut('slow');
         });
-    }
-    else {
+    } else {
         document.cookie = "firstvisit=false";
-    }
+    }*/
     var $menuItems = $('.main-column-left nav>ul>li>span');
     var index = getCookie('indexmenu');
     if (index != '') {
