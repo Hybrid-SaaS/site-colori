@@ -338,6 +338,16 @@ $(() => {
 	$easyzoom = $('.easyzoom').easyZoom();
 
 	var $products = $('.product .price span');
+	for (var x = 0; x < $products.length; x++) {
+		var $product = $products.eq(x);
+		var price = $product.text();
+		var decimals = price.substring(price.length - 2, price.length);		
+		if (decimals == '00') {
+			price = price.substring(0, price.length - 3);
+			$product.text(price + ",-");
+		}
+	}
+	var $products = $('.product .originalPrice span');
 
 	for (var x = 0; x < $products.length; x++) {
 		var $product = $products.eq(x);
