@@ -14,8 +14,9 @@ $(() => {
         $smallImagesFrames.removeClass('active');
 
         var $imagebig = $('#imagebig');
+        
         var $target = $(event.target);
-        var url = '/image/product/guid/' + encodeURIComponent($imagebig.data('guid')) + '/' + $target.data('index') + '?height=280&width=400';
+        var url = '/image/product/guid/' + encodeURIComponent(<any>$imagebig.data('guid')) + '/' + $target.data('index') + '?height=280&width=400';
 
         $target.parent().addClass('active');
 
@@ -72,7 +73,7 @@ $(() => {
                             $container.find('img').on('click', (event: JQueryEventObject) => {
                                 var $this = $(event.target);
                                 if ($this.closest('.related.open').length) {
-                                    location.href = $this.data('url');
+                                    location.href = <any>$this.data('url');
                                 }
                             });
                         }
@@ -113,7 +114,7 @@ $(() => {
                             $container.find('div.size').on('click', (event: JQueryEventObject) => {
                                 var $this = $(event.target);
                                 if ($this.closest('.related.open').length) {
-                                    location.href = $this.data('url');
+                                    location.href = <any>$this.data('url');
                                 }
                             });
                         }

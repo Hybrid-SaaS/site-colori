@@ -22,3 +22,43 @@
     position: absolute;
     z-index: 10;
 }
+
+#home {
+    .img() {
+        z-index: 10;
+        height: 415px;
+        width: 50px;
+        position: absolute;
+        background-color: white;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        opacity: 0;
+        -moz-transition: opacity .2s ease-out;
+        -o-transition: opacity .2s ease-out;
+        -webkit-transition: opacity .2s ease-out;
+        transition: opacity .2s ease-out;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    .left {
+        border-radius: 0.75rem 0 0 0.75rem;
+        border-right: solid 1px silver;
+        margin-left: -1px;
+        background-image: url('/src/home/chevron-left.png');
+        .img();
+    }
+
+    .right {
+        border-radius: 0 0.75rem 0.75rem 0;
+        border-left: solid 1px silver;
+        margin-left: 781px;
+        background-image: url('/src/home/chevron-right.png');
+        
+        .img();
+    }
+}

@@ -5,21 +5,10 @@ var WebPage;
     (function (References) {
         var MessageBox;
         (function (MessageBox) {
-            MessageBox.$messageLayer;
-            MessageBox.$message;
-            MessageBox.$messageHeader;
-            MessageBox.$messageBody;
         })(MessageBox = References.MessageBox || (References.MessageBox = {}));
-        References.$document;
-        References.$html;
-        References.$body;
     })(References = WebPage.References || (WebPage.References = {}));
     var Data;
     (function (Data) {
-        Data.language;
-        Data.country;
-        Data.productGuid;
-        Data.basketGuid;
     })(Data = WebPage.Data || (WebPage.Data = {}));
     var Event = (function () {
         function Event(eventType, data) {
@@ -27,7 +16,7 @@ var WebPage;
             this.data = data;
         }
         return Event;
-    })();
+    }());
     WebPage.Event = Event;
     (function (EventType) {
         EventType[EventType["BeforeLoad"] = 0] = "BeforeLoad";
@@ -51,9 +40,9 @@ var WebPage;
         Events.fire = fire;
         function getHandlers(eventType) {
             switch (eventType) {
-                case 1 /* Load */:
+                case EventType.Load:
                     return Handlers.onLoad;
-                case 0 /* BeforeLoad */:
+                case EventType.BeforeLoad:
                     return Handlers.onBeforeLoad;
             }
             return null;
@@ -64,13 +53,13 @@ var WebPage;
         Events.on = on;
     })(Events = WebPage.Events || (WebPage.Events = {}));
     //wil be overridden
-    function resourceString(name) {
+    function xresourceString(name) {
         return 'no translation: ' + name;
     }
-    WebPage.resourceString = resourceString;
+    WebPage.xresourceString = xresourceString;
     //init the page (onload)
     function load() {
-        Events.fire(0 /* BeforeLoad */);
+        Events.fire(EventType.BeforeLoad);
         References.$document = $(document);
         References.$html = $('html');
         References.$body = $(document.body);
@@ -89,23 +78,22 @@ var WebPage;
                 $this.removeClass('ok');
             }
         });
-        Events.fire(1 /* Load */);
+        Events.fire(EventType.Load);
     }
     WebPage.load = load;
     var Basket;
     (function (Basket) {
         var References;
         (function (References) {
-            References.$basket;
-            References.$amount;
-            References.$total;
         })(References = Basket.References || (Basket.References = {}));
         var Events;
         (function (Events) {
-            Events.onChange;
         })(Events = Basket.Events || (Basket.Events = {}));
         function init() {
             References.$basket = $('#shoppingCart');
+            References.$basket.on('click', function () {
+                location.href = '/website/pages/basket';
+            });
             References.$amount = $('#shoppingcart_amount');
             References.$total = $('#shoppingcart_total');
             updateClient(true);
@@ -119,7 +107,8 @@ var WebPage;
                 dataType: 'json',
                 url: '/Website/Basket/Update-client',
                 cache: false
-            }).done(function (data) {
+            })
+                .done(function (data) {
                 if (Events.onChange) {
                     var result = Events.onChange.call(_this, data);
                     if (result === false)
@@ -181,15 +170,18 @@ var WebPage;
         var MessageType = Message.MessageType;
         var Settings = (function () {
             function Settings() {
-                this.type = 0 /* Information */;
+                this.type = MessageType.Information;
             }
             return Settings;
-        })();
+        }());
         Message.Settings = Settings;
         function show(messagesettings, callbackFunction) {
             if (callbackFunction === void 0) { callbackFunction = null; }
             if (!References.MessageBox.$messageLayer) {
-                References.MessageBox.$messageLayer = $('<div id="message-container"><div class="message">' + '<div class="message-header"></div>' + '<div class="message-body"></div>' + '</div></div>');
+                References.MessageBox.$messageLayer = $('<div id="message-container"><div class="message">' +
+                    '<div class="message-header"></div>' +
+                    '<div class="message-body"></div>' +
+                    '</div></div>');
                 References.MessageBox.$messageLayer.appendTo(References.$body);
                 References.MessageBox.$message = References.MessageBox.$messageLayer.find('.message');
                 References.MessageBox.$messageHeader = References.MessageBox.$message.find('.message-header');
@@ -211,13 +203,13 @@ var WebPage;
             References.MessageBox.$messageBody.text(messagesettings.body);
             References.MessageBox.$message.removeClass();
             switch (messagesettings.type) {
-                case 3 /* Error */:
+                case MessageType.Error:
                     References.MessageBox.$message.addClass('message error');
                     break;
-                case 2 /* Success */:
+                case MessageType.Success:
                     References.MessageBox.$message.addClass('message success');
                     break;
-                case 1 /* Warning */:
+                case MessageType.Warning:
                     References.MessageBox.$message.addClass('message erwarningror');
                     break;
                 default:
@@ -298,12 +290,17 @@ $(function () {
     });
     var $imageFrame = $('.product-left .product-image .imageFrame');
     var $zoomImage = $($imageFrame).children('img');
-    var link = $zoomImage.data('guid');
-    $imageFrame.addClass('easyzoom');
-    $zoomImage.detach();
-    $imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
-    $imageFrame.children('a').append($zoomImage);
-    $easyzoom = $('.easyzoom').easyZoom();
+    $zoomImage.elevateZoom({
+        zoomType: "lens",
+        lensShape: "round",
+        lensSize: 400
+    });
+    //var link = $zoomImage.data('guid');
+    //$imageFrame.addClass('easyzoom');
+    //$zoomImage.detach();
+    //$imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
+    //$imageFrame.children('a').append($zoomImage);
+    //$easyzoom = $('.easyzoom').easyZoom();
     var $products = $('.product .price span');
     for (var x = 0; x < $products.length; x++) {
         var $product = $products.eq(x);
@@ -357,7 +354,7 @@ $(function () {
             if ($set) {
                 //not complete, abort
                 var msg = new WebPage.Message.Settings();
-                msg.type = 3 /* Error */;
+                msg.type = WebPage.Message.MessageType.Error;
                 msg.body = WebPage.resourceString('BasketNotAllRequiredFieldsFilled');
                 msg.header = WebPage.resourceString('Basket');
                 WebPage.Message.show(msg, function () {
@@ -370,17 +367,19 @@ $(function () {
                 url: '/Website/Basket/Add',
                 cache: false,
                 data: data
-            }).done(function () {
+            })
+                .done(function () {
                 WebPage.Basket.updateClient();
                 location.href = "/Website/Pages/Basket";
-            }).fail(function () {
+            })
+                .fail(function () {
                 msg = new WebPage.Message.Settings();
-                msg.type = 3 /* Error */;
+                msg.type = WebPage.Message.MessageType.Error;
                 msg.body = WebPage.resourceString('BasketAddError');
                 msg.header = WebPage.resourceString('Basket');
                 WebPage.Message.show(msg);
-            }).always(function () {
-            });
+            })
+                .always(function () { });
         });
     }
     ;

@@ -68,7 +68,7 @@ module WebPage {
 
 
 	//wil be overridden
-	export function resourceString(name: string): string {
+	export function xresourceString(name: string): string {
 		return 'no translation: ' + name;
 	}
 	//init the page (onload)
@@ -82,7 +82,7 @@ module WebPage {
 
 		//set language
 		Data.language = References.$html.attr('lang');
-		Data.country = References.$html.data('country');
+		Data.country = <any>References.$html.data('country');
 
 		//init basket
 		Basket.init();
@@ -114,7 +114,11 @@ module WebPage {
 		}
 
 		export function init(): void {
-			References.$basket = $('#shoppingCart');
+            References.$basket = $('#shoppingCart');
+		    References.$basket.on('click', () =>
+		    {
+		        location.href = '/website/pages/basket';
+		    });
 			References.$amount = $('#shoppingcart_amount');
 			References.$total = $('#shoppingcart_total');
 
@@ -329,13 +333,21 @@ $(() => {
 
     var $imageFrame = $('.product-left .product-image .imageFrame');
     var $zoomImage = $($imageFrame).children('img');
-    var link = $zoomImage.data('guid');
-    $imageFrame.addClass('easyzoom');
-    $zoomImage.detach();
-    $imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
-    $imageFrame.children('a').append($zoomImage);
 
-	$easyzoom = $('.easyzoom').easyZoom();
+    (<any>$zoomImage).elevateZoom({
+        zoomType: "lens",
+        lensShape: "round",
+        lensSize: 400
+    });
+    //var link = $zoomImage.data('guid');
+    //$imageFrame.addClass('easyzoom');
+    //$zoomImage.detach();
+    //$imageFrame.append('<a href="' + '/image/product/guid/' + link + '?width=750&height=750"></div>');
+    //$imageFrame.children('a').append($zoomImage);
+
+
+
+    //$easyzoom = $('.easyzoom').easyZoom();
 
 	var $products = $('.product .price span');
 	for (var x = 0; x < $products.length; x++) {

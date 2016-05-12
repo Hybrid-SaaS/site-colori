@@ -5,9 +5,13 @@
 //onload
 $(() => {
     var $home = $('#home');
+
+    $home.append('<div class="left"></div><div class="right"></div>');
     var $homeslides = $('#homeslide a');
 
 
+
+    
     for (var x = 0; x < $homeslides.length; x++) {
         var $slide = $homeslides.eq(x);
         var $img = $('<img src="' + $slide.text() + '" class="slide" />');
@@ -17,23 +21,67 @@ $(() => {
     var $slides = $home.find('img');
     $slides.on('click', (event: JQueryEventObject) => {
 
-        location = $(event.target).data('link');
+        location.href = <any>$(event.target).data('link');
 
     });
 
     var currentIndex = $slides.length - 1;
+
+    var negative = false;
+    var navi = false;
     var runner = () => {
 
-        $slides.eq(currentIndex).fadeOut(1000);
+        if (!navi)
+            $slides.eq(currentIndex).fadeOut(1000);
+        navi = false;
 
-        currentIndex++;
-        if (currentIndex >= $slides.length)
-            currentIndex = 0;
+        if (!negative)
+        {
+            currentIndex++;
+            if (currentIndex >= $slides.length)
+                currentIndex = 0;
+        }
+        else
+        {
+            negative = false;
+            currentIndex--;
+            if (currentIndex < 0)
+                currentIndex = $slides.length-1;
+        }
 
         $slides.eq(currentIndex).fadeIn(1000);
     };
     runner();
-    setInterval(runner, 5000);
+
+    var interval = setInterval(runner, 5000);
+
+    $home.find('.right')
+        .on('click',
+        () =>
+        {
+            navi = true;
+            clearInterval(interval);
+            $slides.stop();
+            $slides.eq(currentIndex).fadeOut(500);
+
+            runner();
+            interval = setInterval(runner, 5000);
+        });
+
+    $home.find('.left')
+        .on('click',
+        () =>
+        {
+            navi = true;
+            clearInterval(interval);
+            $slides.stop();
+            $slides.eq(currentIndex).fadeOut(500);
+
+            negative = true;
+            runner();
+            interval = setInterval(runner, 5000);
+        });
+
 
     var $newImages = $('.new');
     $newImages.eq(0).show();

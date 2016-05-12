@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "src/global/global.css",
+    "inputFile": "src/global/global.less"
+  },
+  {
+    "outputFile": "src/home/home.css",
+    "inputFile": "src/home/home.less"
+  }
+]
